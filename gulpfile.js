@@ -10,7 +10,7 @@ const sass = require("gulp-sass")(require("sass"));
 exports.primerTarea = tarea;*/
 
 function css(done) {
-    src("src/scss/app.scss")// Identificar el archivo de SASS
+    src("src/scss/**/*.scss")// Identificar el archivo de SASS
     .pipe(sass())//Compilarlo
     .pipe(dest("build/css"))//Almancenarlo en el disco duro
 
@@ -18,7 +18,7 @@ function css(done) {
 } // Callback que avisa al gulp cuando llegamos al final 
 
 function dev(done) {
-    watch("src/scss/app.scss" , css);
+    watch("src/scss/**/*.scss", css);
 
     done();
 }
