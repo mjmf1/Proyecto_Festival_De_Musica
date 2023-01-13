@@ -10,6 +10,25 @@
 }
 
 .nevegacion-principal{
+        background-color:red;
+
+        @include m.phone{
+            background-color: blue;
+
+        }
+        @include m.tablet{
+            background-color: black;
+
+        }
+        @include m.desktop{
+            background-color: yellow;
+
+        }
+        @include m.desktopXL{
+            background-color: orange;
+
+        }
+    }
     a{
         color: v.$blanco;
         font-size: 2.4rem;
@@ -18,8 +37,12 @@
             color: v.$amarillo;
         }
     }
+
+/*
+.prueba{
+    @include m.heading(v.$amarillo, true);
 }
 
-.prueba{
+.texto {
     @include m.heading
-}
+}*/
