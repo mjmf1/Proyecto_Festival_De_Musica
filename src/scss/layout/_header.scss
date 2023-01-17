@@ -28,15 +28,18 @@
             background-color: orange;
 
         }
-    }
-    a{
-        color: v.$blanco;
-        font-size: 2.4rem;
-
-        &:hover{
-            color: v.$amarillo;
+        
+        a{
+        
+            color: v.$blanco;
+            font-size: 2.4rem;
+    
+            &:hover{
+                color: v.$amarillo;
+            }
         }
     }
+    
 
 /*
 .prueba{
