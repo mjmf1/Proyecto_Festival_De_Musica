@@ -350,7 +350,7 @@ a {
 }
 
 h1, h2, h3 {
-  margin: 0 0 5rem 0;
+  margin: 0 0 4rem 0;
 }
 
 h1 {
@@ -370,34 +370,41 @@ h3 {
 }
 .header h1 {
   color: #ffffff;
-}
-
-.nevegacion-principal {
-  background-color: red;
-}
-@media (min-width: 480px) {
-  .nevegacion-principal {
-    background-color: blue;
-  }
+  text-align: center;
 }
 @media (min-width: 768px) {
-  .nevegacion-principal {
-    background-color: black;
+  .header h1 {
+    margin: 0;
   }
 }
-@media (min-width: 992px) {
-  .nevegacion-principal {
-    background-color: yellow;
+.header .contenido-header {
+  padding: 2rem;
+}
+@media (min-width: 768px) {
+  .header .contenido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
-@media (min-width: 1200) {
+
+@media (min-width: 768px) {
   .nevegacion-principal {
-    background-color: orange;
+    display: flex;
+    gap: 2rem;
   }
 }
 .nevegacion-principal a {
+  display: block;
+  text-align: center;
+  margin-bottom: 1rem;
   color: #ffffff;
   font-size: 2.4rem;
+}
+@media (min-width: 768px) {
+  .nevegacion-principal a {
+    margin: 0;
+  }
 }
 .nevegacion-principal a:hover {
   color: #fef46d;
