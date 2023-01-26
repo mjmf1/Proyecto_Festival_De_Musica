@@ -4,19 +4,12 @@ const {src, dest , watch, parallel} = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require('gulp-plumber');
 
-
-//const sass = require('gulp-sass')(require('sass'));
-/*function tarea (cb) { // cb = callback
-    //console.log('mi primera tarea');
-    cb();
-}
-exports.primerTarea = tarea;*/
-
 // Imagenes
-
 const cache = require('gulp-cache');
-const imagenin = require('gulp-imagemin');
-const webp = require('gulp-webp');
+const imagemin = require('gulp-imagemin'); // Imagenes de foto anitguo
+const webp = require('gulp-webp'); // Imagenes de formato modernos
+const avif = require('gulp-avif');
+
 
 function css(done) {
     src("src/scss/**/*.scss")// Identificar el archivo de SASS
@@ -27,36 +20,46 @@ function css(done) {
     done();
 } // Callback que avisa al gulp cuando llegamos al final 
 
-function imagenes(done) {
+function imagenes(done) { // probando Imagemin para reducir peso de imagenes
     const opciones = {
         optimizationLevel: 3
     }
     src('src/img/**/*.{jpg, png}')
-        .pipe
         .pipe(dest('build/img') )
-    done(cache(imagenin(opciones) ) );
+        .pipe(cache(imagemin(opciones) ) );
+
+    done();
 }
 
-function versionWebp(done) {
-
+function versionWebp(done) { // Transformar Imagenes a version Webp
     const opciones = {
         quality: 50
     };
-
     src('src/img/**/*.{jpg, png}')
     .pipe(webp(opciones))
     .pipe(dest('build/img') )
 
     done();
 }
-
-function dev(done) {
-    watch("src/scss/**/*.scss", css);
+function versionAvif(done) { // Transformar Imagenes a version Avif
+    const opciones = {
+        quality: 50
+    };
+    src('src/img/**/*.{jpg, png}')
+    .pipe(avif(opciones))
+    .pipe(dest('build/img') )
 
     done();
 }
 
+function dev(done) { // El dev escucha por los camo}bios en SASS
+    watch("src/scss/**/*.scss", css);
+
+    done();
+}
+// Llamado de funciones
 exports.css = css;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
-exports.dev = parallel(imagenes,versionWebp, dev);
+exports.versionAvif = versionAvif;
+exports.dev = parallel( imagenes, versionWebp, versionAvif, dev);
