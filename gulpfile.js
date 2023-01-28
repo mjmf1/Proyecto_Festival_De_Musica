@@ -52,14 +52,23 @@ function versionAvif(done) { // Transformar Imagenes a version Avif
     done();
 }
 
+function JavaScript(done) {
+    src("src/js/**/*.js")
+    .pipe(dest('build/js') )
+
+    done();
+}
+
 function dev(done) { // El dev escucha por los camo}bios en SASS
     watch("src/scss/**/*.scss", css);
+    watch("src/js/**/*.js", JavaScript);
 
     done();
 }
 // Llamado de funciones
 exports.css = css;
+exports.js = JavaScript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev = parallel( imagenes, versionWebp, versionAvif, dev);
+exports.dev = parallel( imagenes, versionWebp, versionAvif, JavaScript, dev);
