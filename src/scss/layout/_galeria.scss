@@ -10,7 +10,7 @@
 }
 
 .galeria-imagenes{
-    @include m.resetearl-ista;
+    @include m.resetear-lista;
     @include m.grid(2, 2rem);
 
     @include m.phone {
