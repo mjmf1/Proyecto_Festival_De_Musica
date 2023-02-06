@@ -14,6 +14,10 @@ const imagemin = require('gulp-imagemin'); // Imagenes de foto anitguo
 const webp = require('gulp-webp'); // Imagenes de formato modernos
 const avif = require('gulp-avif');
 
+// JavaScript
+
+const terser = require('gulp-terser-js');
+
 
 function css(done) {
     src("src/scss/**/*.scss")// Identificar el archivo de SASS
@@ -61,6 +65,9 @@ function versionAvif(done) { // Transformar Imagenes a version Avif
 
 function JavaScript(done) {
     src("src/js/**/*.js")
+    .pipe(sourcemaps.init() )
+    .pipe(terser())
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('build/js') )
 
     done();
